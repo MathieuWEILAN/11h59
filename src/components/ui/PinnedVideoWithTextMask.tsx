@@ -2,7 +2,7 @@
 import { useLayoutEffect, useRef, useId } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useMobile } from "@/hooks/useMobile";
+import { useDevice } from "@/hooks/useMobile";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function PinnedVideoWithTextMask({
@@ -13,7 +13,7 @@ export default function PinnedVideoWithTextMask({
   text?: string | string[];
 }) {
   const video = "/assets/videos/food.mp4";
-  const isMobile = useMobile();
+  const device = useDevice();
   const sectionRef = useRef<HTMLDivElement>(null); // wrapper logique
   const pinRef = useRef<HTMLDivElement>(null); // bloc pinné (100vh)
   const maskSvgRef = useRef<SVGSVGElement>(null);
@@ -27,10 +27,12 @@ export default function PinnedVideoWithTextMask({
   // Fonction pour calculer la taille de police responsive
   const getFontSize = () => {
     const baseFontSize = Math.max(80, 200 - textCount * 20);
-    // En mobile (largeur < 768px), réduire la taille de 40%
-    return typeof window !== "undefined" && window.innerWidth < 768
-      ? baseFontSize * 0.5
-      : baseFontSize;
+    // Réduire la taille selon le device
+    switch (device) {
+      case 'mobile': return baseFontSize * 0.5;
+      case 'tablet': return baseFontSize * 0.7;
+      case 'desktop': return baseFontSize;
+    }
   };
 
   useLayoutEffect(() => {

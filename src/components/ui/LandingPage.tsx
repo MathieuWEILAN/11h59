@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import ClockCounter from "./ClockCounter";
-import { useMobile } from "@/hooks/useMobile";
+import { useDevice } from "@/hooks/useMobile";
 
 interface LandingPageProps {
   onComplete: () => void;
@@ -11,8 +11,7 @@ interface LandingPageProps {
 
 export default function LandingPage({ onComplete }: LandingPageProps) {
   const [shouldExit, setShouldExit] = useState(false);
-
-  const isMobile = useMobile();
+  const device = useDevice();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -21,6 +20,7 @@ export default function LandingPage({ onComplete }: LandingPageProps) {
       document.body.style.overflow = "unset";
     };
   }, []);
+
   const handleAnimationComplete = () => {
     // Délai avant de faire sortir la landing page
     setTimeout(() => {
@@ -30,9 +30,11 @@ export default function LandingPage({ onComplete }: LandingPageProps) {
   };
 
   const getScale = () => {
-    if (window.innerWidth < 768) return 0.2; // mobile
-    if (window.innerWidth < 1024) return 0.3; // tablet
-    return 0.5; // desktop
+    switch (device) {
+      case 'mobile': return 0.2;
+      case 'tablet': return 0.3;
+      case 'desktop': return 0.5;
+    }
   };
   const scale = getScale();
 

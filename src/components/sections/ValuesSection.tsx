@@ -8,7 +8,7 @@ import { Section } from "@/components/ui/Section";
 import { Subtitle } from "@/components/ui/Subtitle";
 import { Title } from "@/components/ui/Title";
 import Image from "next/image";
-import { useMobile } from "@/hooks/useMobile";
+import { useDevice } from "@/hooks/useMobile";
 
 const iconMap = {
   ChefHat,
@@ -52,13 +52,8 @@ const rewards = [
   },
 ];
 export function ValuesSection({ data }: ValuesSectionProps) {
-  const isMobile = useMobile();
-  let isDesktop = true;
-  if (typeof window !== "undefined" && window.innerWidth <= 1024) {
-    isDesktop = false;
-  } else {
-    isDesktop = true;
-  }
+  const device = useDevice();
+  const isDesktop = device === 'desktop';
 
   return (
     <Section id="values" className="py-20 bg-gray-50">
