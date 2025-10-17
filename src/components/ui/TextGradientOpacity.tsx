@@ -15,6 +15,23 @@ interface WordProps {
   letterStartIndex: number;
 }
 
+interface LetterProps {
+  letter: string;
+  scrollProgress: MotionValue<number>;
+  start: number;
+  end: number;
+}
+
+function Letter({ letter, scrollProgress, start, end }: LetterProps) {
+  const opacity = useTransform(scrollProgress, [start, end], [0.1, 0.8]);
+
+  return (
+    <motion.span className="inline-block font-semibold" style={{ opacity }}>
+      {letter}
+    </motion.span>
+  );
+}
+
 function Word({
   word,
   scrollProgress,
@@ -29,16 +46,14 @@ function Word({
         const globalLetterIndex = letterStartIndex + letterIndex;
         const start = globalLetterIndex / totalLetters;
         const end = (globalLetterIndex + 1) / totalLetters;
-        const opacity = useTransform(scrollProgress, [start, end], [0.1, 0.8]);
-
         return (
-          <motion.span
+          <Letter
             key={letterIndex}
-            className="inline-block font-semibold"
-            style={{ opacity }}
-          >
-            {letter}
-          </motion.span>
+            letter={letter}
+            scrollProgress={scrollProgress}
+            start={start}
+            end={end}
+          />
         );
       })}
     </span>

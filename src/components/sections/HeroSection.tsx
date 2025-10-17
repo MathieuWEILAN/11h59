@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { HeroSection as HeroSectionType } from "@/types/cms";
 import { Section } from "@/components/ui/Section";
+import { useLandingPage } from "@/components/providers/LandingPageProvider";
 import Image from "next/image";
 
 interface HeroSectionProps {
@@ -13,6 +14,7 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ data }: HeroSectionProps) {
+  const { showLanding } = useLandingPage();
   const handleCtaClick = () => {
     if (data.ctaLink.startsWith("#")) {
       const element = document.querySelector(data.ctaLink);
@@ -40,33 +42,43 @@ export function HeroSection({ data }: HeroSectionProps) {
       id="hero"
       className="relative min-h-screen bg-[#105754] overflow-hidden"
     >
-      <Image
-        key={images[0]}
-        src={images[0]}
-        alt="Hero"
-        height={600}
-        width={600}
-        className="object-cover -bottom-[50%] -left-[20%] absolute"
-      />
-      <Image
-        key={images[1]}
-        src={images[1]}
-        alt="Hero"
-        height={600}
-        width={600}
-        className="object-cover -bottom-[50%] -right-[20%] absolute"
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={!showLanding ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8, delay: 0.1 }}
+      >
+        <Image
+          key={images[0]}
+          src={images[0]}
+          alt="Hero"
+          height={600}
+          width={600}
+          className="object-cover -bottom-[40%] xl:-bottom-[50%] -left-[20%] absolute"
+        />
+        <Image
+          key={images[1]}
+          src={images[1]}
+          alt="Hero"
+          height={600}
+          width={600}
+          className="object-cover -bottom-[40%] xl:-bottom-[50%] -right-[20%] absolute"
+        />
+      </motion.div>
 
       <Container size="xl" className="z-10">
         <div className="mx-auto px-4 py-20">
           <div className="text-center flex flex-col items-center gap-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              animate={
+                !showLanding
+                  ? { opacity: 1, scale: 1 }
+                  : { opacity: 0, scale: 0.9 }
+              }
+              transition={{ duration: 0.8, delay: 0.1 }}
               className="mb-6"
             >
-              <div className="inline-flex items-center space-x-2 bg-emerald-100 px-4 py-2 rounded-full mb-6">
+              <div className="inline-flex items-center space-x-2 bg-emerald-100 px-4 py-2 rounded-full mb-6 gap-2">
                 <Sparkles size={20} />
                 <span className="font-semibold">
                   Adieu la cantine fade et aseptisée 👋
@@ -76,19 +88,25 @@ export function HeroSection({ data }: HeroSectionProps) {
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white"
+              animate={
+                !showLanding ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+              }
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight text-white"
             >
               Révolutionner la
               <br />
-              <span className="text-orange-500">Restauration d'Entreprise</span>
+              <span className="text-orange-500">
+                Restauration d&apos;Entreprise
+              </span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
+              animate={
+                !showLanding ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+              }
+              transition={{ duration: 0.8, delay: 0.5 }}
               className="text-xl md:text-2xl mb-8 text-white leading-relaxed"
             >
               Rendre le{" "}
@@ -97,14 +115,16 @@ export function HeroSection({ data }: HeroSectionProps) {
               </span>{" "}
               accessible à tous,
               <br />
-              là où nous passons l'essentiel de notre temps :{" "}
+              là où nous passons l&apos;essentiel de notre temps :{" "}
               <span className="font-semibold">au travail</span> 💚
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
+              animate={
+                !showLanding ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+              }
+              transition={{ duration: 0.8, delay: 0.7 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Button
@@ -125,8 +145,8 @@ export function HeroSection({ data }: HeroSectionProps) {
 
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.8 }}
+              animate={!showLanding ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
               className="flex flex-wrap justify-center gap-6 text-sm text-stone-600"
             >
               <div className="flex items-center space-x-2">

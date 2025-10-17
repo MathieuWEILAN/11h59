@@ -58,10 +58,10 @@ const Card = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className="flex relative  h-[600px] lg:h-[500px] w-full max-w-[calc(100vw-100px)] rounded-lg p-6 origin-top flex-col lg:flex-row"
+        className="flex relative  h-[600px] lg:h-[500px] w-full md:max-w-[calc(100vw-100px)] rounded-lg p-6 origin-top flex-col lg:flex-row shadow-xl"
       >
         <div className="flex lg:w-[40%] w-full flex-col justify-center items-start pr-6">
-          <h3 className="text-5xl font-bold whitespace !mb-4 break-all">
+          <h3 className="text-3xl xl:text-5xl font-bold !mb-4 break-words">
             {title}
           </h3>
           <p className="text-base leading-relaxed">{description}</p>

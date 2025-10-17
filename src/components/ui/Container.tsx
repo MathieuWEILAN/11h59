@@ -19,7 +19,7 @@ export function Container({
     full: "w-screen",
   };
 
-  const classes = `px-4 sm:px-0 flex flex-col justify-center container mx-auto ${className}`;
+  const classes = `px-4 xl:px-0 flex flex-col justify-center container !mx-auto ${className}`;
 
   return (
     <div className={classes} {...props}>

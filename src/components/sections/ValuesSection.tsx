@@ -8,6 +8,7 @@ import { Section } from "@/components/ui/Section";
 import { Subtitle } from "@/components/ui/Subtitle";
 import { Title } from "@/components/ui/Title";
 import Image from "next/image";
+import { useMobile } from "@/hooks/useMobile";
 
 const iconMap = {
   ChefHat,
@@ -51,6 +52,14 @@ const rewards = [
   },
 ];
 export function ValuesSection({ data }: ValuesSectionProps) {
+  const isMobile = useMobile();
+  let isDesktop = true;
+  if (typeof window !== "undefined" && window.innerWidth <= 1024) {
+    isDesktop = false;
+  } else {
+    isDesktop = true;
+  }
+
   return (
     <Section id="values" className="py-20 bg-gray-50">
       <Container>
@@ -71,7 +80,7 @@ export function ValuesSection({ data }: ValuesSectionProps) {
           <div className="grid grid-cols-1 gap-8">
             {/* Première ligne avec 1 élément */}
             <motion.div
-              className="flex justify-center"
+              className="flex justify-center hidden lg:flex"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -98,7 +107,7 @@ export function ValuesSection({ data }: ValuesSectionProps) {
                       className="absolute inset-0 object-cover"
                       fill
                     />
-                    <div className="absolute bottom-[16px] h-auto bg-white max-w-md rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center gap-4">
+                    <div className="absolute bottom-0 lg:bottom-[16px] h-auto bg-white max-w-md rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center gap-4">
                       <motion.div
                         whileInView={{
                           scale: 1.25,
@@ -129,8 +138,8 @@ export function ValuesSection({ data }: ValuesSectionProps) {
             </motion.div>
 
             {/* Deuxième ligne avec 2 éléments */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {data.values.slice(1).map((value, index) => {
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8 gap-0">
+              {data.values.slice(!isDesktop ? 1 : 0).map((value, index) => {
                 const IconComponent =
                   iconMap[value.icon as keyof typeof iconMap];
                 const gradientColor =
@@ -191,7 +200,7 @@ export function ValuesSection({ data }: ValuesSectionProps) {
             labelisé 2 écotables, témoignage de notre engagement pour une
             restauration durable et responsable.
           </p>
-          <motion.div className="relative flex gap-4 w-full justify-center">
+          <motion.div className="relative flex flex-col items-center md:flex-row gap-4 w-full justify-center">
             {rewards.map((reward, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}

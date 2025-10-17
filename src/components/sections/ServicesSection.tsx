@@ -21,7 +21,6 @@ export function ServicesSection({ data }: ServicesSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className=""
         >
           <Subtitle text={data.title} className="!mb-8" />
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900">

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "motion/react";
+import { motion, useInView, Variants } from "motion/react";
 import { useRef } from "react";
 
 interface TitleProps {
@@ -17,7 +17,7 @@ export const Title: React.FC<TitleProps> = ({ text, className = "" }) => {
 
   const words = text.split(" ");
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     visible: {
       transition: {
@@ -27,7 +27,7 @@ export const Title: React.FC<TitleProps> = ({ text, className = "" }) => {
     },
   };
 
-  const wordVariants = {
+  const wordVariants: Variants = {
     hidden: {},
     visible: {
       transition: {
@@ -36,7 +36,7 @@ export const Title: React.FC<TitleProps> = ({ text, className = "" }) => {
     },
   };
 
-  const letterVariants = {
+  const letterVariants: Variants = {
     hidden: {
       y: 100,
       opacity: 0,
@@ -46,7 +46,7 @@ export const Title: React.FC<TitleProps> = ({ text, className = "" }) => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
       },
     },
   };
@@ -67,11 +67,11 @@ export const Title: React.FC<TitleProps> = ({ text, className = "" }) => {
         >
           {word.split("").map((letter, letterIndex) => (
             <motion.span
-              key={letterIndex}
+              key={`${wordIndex}-${letterIndex}`}
               className="inline-block"
               variants={letterVariants}
             >
-              {letter}
+              {letter === " " ? "\u00A0" : letter}
             </motion.span>
           ))}
           {wordIndex < words.length - 1 && (

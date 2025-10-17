@@ -9,6 +9,7 @@ import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { PhilosophySection } from "@/components/sections/PhilosophySection";
 import { KitchenSection } from "@/components/sections/KitchenSection";
+import { SeasonSection } from "@/components/sections/SeasonSection";
 
 export default async function Home() {
   const pageContent = await cms.getPageContent();
@@ -50,6 +51,8 @@ export default async function Home() {
         )}
 
         <KitchenSection />
+
+        {/* <SeasonSection /> */}
 
         {testimonialsSection && testimonialsSection.type === "testimonials" && (
           <TestimonialsSection data={testimonialsSection} />

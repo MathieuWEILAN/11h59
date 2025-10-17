@@ -138,7 +138,7 @@ export default function StackedCardsScroll({ cards }: Props) {
               card={card}
               index={index}
               totalCards={cards.length}
-              containerRef={containerRef}
+              containerRef={containerRef as React.RefObject<HTMLDivElement>}
             />
           ))}
         </div>

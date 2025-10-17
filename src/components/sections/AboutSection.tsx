@@ -22,7 +22,7 @@ export function AboutSection({ data }: AboutSectionProps) {
   return (
     <Section id="about" className="bg-gray-50">
       <Container size="xl">
-        <div className="mb-16 flex flex-col gap-8">
+        <motion.div className="mb-16 flex flex-col gap-8">
           <Subtitle text={data.subtitle} />
           <h2 aria-label={data.title}>
             <Title text={data.title} />
@@ -36,9 +36,9 @@ export function AboutSection({ data }: AboutSectionProps) {
           >
             {data.description}
           </motion.p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden py-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden py-8">
           {data.keyPoints.map((point, index) => {
             const IconComponent = iconMap[point.icon as keyof typeof iconMap];
 
@@ -49,7 +49,7 @@ export function AboutSection({ data }: AboutSectionProps) {
                 whileInView={{ y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true, amount: 0.6 }}
-                className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                className="text-center p-8 bg-white rounded-2xl shadow-lg transition-shadow"
               >
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-100 rounded-full mb-6">
                   {IconComponent && (

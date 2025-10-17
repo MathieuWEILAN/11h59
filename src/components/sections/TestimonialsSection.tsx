@@ -5,6 +5,8 @@ import { Star, Quote } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { TestimonialsSection as TestimonialsSectionType } from "@/types/cms";
 import { Section } from "@/components/ui/Section";
+import { Subtitle } from "@/components/ui/Subtitle";
+import { Title } from "@/components/ui/Title";
 
 interface TestimonialsSectionProps {
   data: TestimonialsSectionType;
@@ -21,15 +23,13 @@ export function TestimonialsSection({ data }: TestimonialsSectionProps) {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-orange-500 font-semibold text-lg mb-4">
-            {data.subtitle}
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            {data.title}
+          <Subtitle text={data.subtitle} className="!mb-4" />
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 !mb-6 text-left">
+            <Title text={data.title} />
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-8">
           {data.testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
@@ -58,8 +58,8 @@ export function TestimonialsSection({ data }: TestimonialsSectionProps) {
                 </p>
               </div>
 
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-green-500 rounded-full mr-4 flex items-center justify-center">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-green-800 rounded-full mr-4 flex items-center justify-center">
                   <span className="text-white font-bold text-lg">
                     {testimonial.name.charAt(0)}
                   </span>
@@ -84,7 +84,7 @@ export function TestimonialsSection({ data }: TestimonialsSectionProps) {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-orange-500 to-green-600 rounded-2xl p-8 text-white">
+          <div className="bg-gradient-to-r from-green-600 to-green-800 rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">
               Rejoignez nos clients satisfaits
             </h3>

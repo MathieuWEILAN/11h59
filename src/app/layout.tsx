@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { LandingPageProvider } from "@/components/providers/LandingPageProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -42,9 +43,11 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased !overflow-x-hidden`}
       >
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <LandingPageProvider>
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        </LandingPageProvider>
       </body>
     </html>
   );

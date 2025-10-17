@@ -10,8 +10,7 @@ import { Subtitle } from "../ui/Subtitle";
 import Picture1 from "../../assets/images/restaurant-1.webp";
 import Picture2 from "../../assets/images/restaurant-2.webp";
 import Picture3 from "../../assets/images/restaurant-3.webp";
-import BackgroundReveal from "../ui/BackgroundReveal";
-import Test from "../ui/Test";
+import PinnedVideoWithTextMask from "../ui/PinnedVideoWithTextMask";
 
 interface KitchenSectionProps {
   data?: ServicesSectionType;
@@ -59,10 +58,10 @@ export function KitchenSection() {
   ];
 
   return (
-    <Section id="kitchen" className="py-20 bg-white overflow-hidden">
+    <Section id="kitchen" className="pt-20 bg-white overflow-hidden">
       <Container size="xl" className="flex flex-col items-center pb-16">
         <Subtitle text="Notre cuisine" className="!mb-6 text-center !mx-auto" />
-        <div className="flex items-center gap-2 uppercase tracking-tighter text-6xl justify-center font-semibold">
+        <div className="flex md:flex-row flex-col items-center gap-2 uppercase tracking-tighter md:text-6xl text-4xl justify-center font-semibold">
           <span className="">Saine.</span>
           <span className="">Savoureuse.</span>
           <span className="">Créative.</span>
@@ -87,8 +86,7 @@ export function KitchenSection() {
           ))}
         </div>
       </Container>
-      <Test />
-      {/* <BackgroundReveal video={video} text="11H59"></BackgroundReveal> */}
+      <PinnedVideoWithTextMask text={["Mangez", "Savourez", "Partagez"]} />{" "}
     </Section>
   );
 }

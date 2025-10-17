@@ -1,5 +1,5 @@
-import { Container } from '@/components/ui/Container';
-import { NavigationItem } from '@/types/cms';
+import { Container } from "@/components/ui/Container";
+import { NavigationItem } from "@/types/cms";
 
 interface FooterProps {
   siteName: string;
@@ -12,17 +12,24 @@ interface FooterProps {
   }>;
 }
 
-export function Footer({ siteName, copyright, links, socialLinks }: FooterProps) {
+export function Footer({
+  siteName,
+  copyright,
+  links,
+  socialLinks,
+}: FooterProps) {
   return (
     <footer className="bg-gray-900 text-white">
       <Container size="xl">
         <div className="py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <div className="text-2xl font-bold text-orange-500 mb-4">{siteName}</div>
+              <div className="text-2xl font-bold text-orange-500 mb-4">
+                {siteName}
+              </div>
               <p className="text-gray-400 mb-4">
-                Révolutionner la restauration d&apos;entreprise avec des solutions éco-responsables
-                et des espaces conviviaux.
+                Révolutionner la restauration d&apos;entreprise avec des
+                solutions éco-responsables et des espaces conviviaux.
               </p>
               {socialLinks && (
                 <div className="flex space-x-4">

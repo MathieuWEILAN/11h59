@@ -18,7 +18,7 @@ interface AccordionItem {
 interface AccordionProps {
   items: AccordionItem[];
   allowMultiple?: boolean;
-  setSelectedImages: any;
+  setSelectedImages: (index: number) => void;
 }
 
 export default function Accordion({

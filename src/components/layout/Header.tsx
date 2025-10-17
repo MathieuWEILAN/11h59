@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { NavigationItem } from "@/types/cms";
 import { motion } from "motion/react";
 
@@ -38,7 +36,7 @@ export function Header({ siteName, navigation, logo }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 max-w-screen`}
     >
       <div
         className={`flex items-center justify-between h-16 lg:h-20 px-4 lg:px-8 ${

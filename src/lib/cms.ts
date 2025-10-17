@@ -56,7 +56,7 @@ export class CMSAdapter {
           { id: "nav-6", label: "Contact", href: "#contact" },
         ],
         footer: {
-          copyright: "© 2024 11H59. Tous droits réservés.",
+          copyright: "© 2025 11H59. Tous droits réservés.",
           links: [
             { id: "footer-1", label: "Mentions légales", href: "/legal" },
             {
@@ -143,7 +143,7 @@ export class CMSAdapter {
                 "Produits frais et locaux",
                 "Respect de la saisonnalité",
               ],
-              color: "#dbeafe",
+              color: "#E7EEED",
               image: "/assets/images/restaurant-3.webp",
             },
             {
@@ -155,7 +155,7 @@ export class CMSAdapter {
                 "Espaces modulables",
                 "Ambiance chaleureuse",
               ],
-              color: "#fce7f3",
+              color: "#B7CCCB",
               image: "/assets/images/restaurant-1.webp",
             },
             {
@@ -167,7 +167,7 @@ export class CMSAdapter {
                 "Suivi de projet",
                 "Formation des équipes",
               ],
-              color: "#fef3c7",
+              color: "#87ABA9",
               image: "/assets/images/restaurant-2.webp",
             },
           ],
