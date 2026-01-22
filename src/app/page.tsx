@@ -10,6 +10,7 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { PhilosophySection } from "@/components/sections/PhilosophySection";
 import { KitchenSection } from "@/components/sections/KitchenSection";
 import { SeasonSection } from "@/components/sections/SeasonSection";
+import  PinnedReveal from "@/components/ui/PinnedReveal"
 
 export default async function Home() {
   const pageContent = await cms.getPageContent();
@@ -53,6 +54,7 @@ export default async function Home() {
         <KitchenSection />
 
         {/* <SeasonSection /> */}
+        <PinnedReveal/>
 
         {testimonialsSection && testimonialsSection.type === "testimonials" && (
           <TestimonialsSection data={testimonialsSection} />
@@ -61,6 +63,7 @@ export default async function Home() {
         {contactSection && contactSection.type === "contact" && (
           <ContactSection data={contactSection} />
         )}
+
       </main>
 
       <Footer

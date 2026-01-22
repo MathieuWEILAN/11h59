@@ -86,7 +86,6 @@ export function KitchenSection() {
           ))}
         </div>
       </Container>
-      <PinnedVideoWithTextMask text={["Mangez", "Savourez", "Partagez"]} />{" "}
     </Section>
   );
 }

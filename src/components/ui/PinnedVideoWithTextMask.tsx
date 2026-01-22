@@ -29,28 +29,28 @@ export default function PinnedVideoWithTextMask({
     const baseFontSize = Math.max(80, 200 - textCount * 20);
     // Réduire la taille selon le device
     switch (device) {
-      case 'mobile': return baseFontSize * 0.5;
-      case 'tablet': return baseFontSize * 0.7;
-      case 'desktop': return baseFontSize;
+      case "mobile":
+        return baseFontSize * 0.5;
+      case "tablet":
+        return baseFontSize * 0.7;
+      case "desktop":
+        return baseFontSize;
     }
   };
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // 🔗 Si tu utilises un scroller Lenis custom, configure scrollerProxy ici.
-      // Si Lenis scrolle la fenêtre (cas courant), rien à faire.
-
       // 1) PIN de la vidéo pendant 200vh
       ScrollTrigger.create({
         trigger: sectionRef.current!,
         start: "top top",
-        end: "+=100%", // ⬅️ vidéo fixée sur 200vh
-        pin: pinRef.current!, // on épingle le bloc vidéo
-        pinSpacing: true, // insère l'espace (pas de trou blanc)
+        end: "+=200%",
+        pin: pinRef.current,
+        pinSpacing: true,
         anticipatePin: 1,
-        pinReparent: false, // Évite les problèmes de reparentage
-        refreshPriority: -1, // Priorité plus basse pour éviter les conflits
-        // markers: true,
+        pinReparent: false,
+        refreshPriority: -1,
+        markers: false,
       });
 
       // 2) Le mask (SVG) monte de 0 → -100% sur la 1ʳᵉ moitié (0 → 100vh)
@@ -63,8 +63,8 @@ export default function PinnedVideoWithTextMask({
           scrollTrigger: {
             trigger: sectionRef.current!,
             start: "top top",
-            end: "+=100%", // première moitié de la séquence
-            scrub: 1, // Ajout d'un délai pour plus de fluidité
+            end: "+=100%",
+            scrub: true,
           },
         }
       );
@@ -98,7 +98,7 @@ export default function PinnedVideoWithTextMask({
           {/* === Ton MASK SVG au-dessus de la vidéo === */}
           <svg
             ref={maskSvgRef}
-            className="absolute left-0 top-0 h-screen w-screen z-10 flex items-center justify-center flex-col rounded-b-[50px]"
+            className="absolute left-0 top-0 h-screen w-screen z-10 flex items-center justify-center flex-col"
           >
             <defs>
               <mask id={`textMask-${maskId}`}>

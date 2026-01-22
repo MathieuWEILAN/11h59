@@ -6,6 +6,7 @@ import { useRef } from "react";
 interface TextGradientOpacityProps {
   text: string;
   className?: string;
+  scrollProgress?: MotionValue<number>;
 }
 
 interface WordProps {
@@ -23,7 +24,7 @@ interface LetterProps {
 }
 
 function Letter({ letter, scrollProgress, start, end }: LetterProps) {
-  const opacity = useTransform(scrollProgress, [start, end], [0.1, 0.8]);
+  const opacity = useTransform(scrollProgress, [start, end], [0.1, 1]);
 
   return (
     <motion.span className="inline-block font-semibold" style={{ opacity }}>
@@ -63,13 +64,16 @@ function Word({
 export default function TextGradientOpacity({
   text,
   className = "",
+  scrollProgress: externalScrollProgress,
 }: TextGradientOpacityProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
+  const internalScrollProgress = useScroll({
     target: containerRef,
     offset: ["start end", "end center"],
-  });
+  }).scrollYProgress;
+
+  const scrollYProgress = externalScrollProgress || internalScrollProgress;
 
   const words = text.split(" ");
   const totalLetters = text.replace(/ /g, "").length;

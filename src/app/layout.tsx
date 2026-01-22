@@ -45,9 +45,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased !overflow-x-hidden`}
       >
-        <LandingPageProvider>
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
-        </LandingPageProvider>
+        <SmoothScrollProvider>
+          <LandingPageProvider>
+            {children}
+          </LandingPageProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
